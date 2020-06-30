@@ -4,35 +4,66 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\User;
+use App\Users;
 
 //use Illuminate\Support\Facades\Hash; (enkripsi password)
 
 
 class AuthController extends Controller
 {
-   public function register(Request $request)
+   public function register_kernet(Request $request)
    {
         $name = $request->input('name');
         $email = $request->input('email');
         $password = Hash::make($request->input('password'));
+        $level =$request->input('level');
 
-        $register = User::create([
+        $register_kernet = Users::create([
             'name' => $name,
             'email' => $email,
-            'password' => $password
+            'password' => $password,
+            'level' => $level
         ]);
 
-        if ($register) {
+        if ($register_kernet) {
             return response()->json([
                 'success' => true,
-                'message' => 'Register Success!',
-                'data' => $register
+                'message' => 'Register Kernet Success!',
+                'data' => $register_kernet
             ], 201);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Register Fail!',
+                'message' => 'Register Kernet Fail!',
+                'data' => ''
+            ], 400);
+        }
+   }
+
+   public function register_penumpang(Request $request)
+   {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = Hash::make($request->input('password'));
+        $level =$request->input('level');
+
+        $register_penumpang = Users::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'level' => $level
+        ]);
+
+        if ($register_penumpang) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Register Penumpang Success!',
+                'data' => $register_penumpang
+            ], 201);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Register Penumpang Fail!',
                 'data' => ''
             ], 400);
         }
@@ -43,12 +74,12 @@ class AuthController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        $user = User::where('email', $email)->first();
+        $users = Users::where('email', $email)->first();
 
-        if (Hash::check($password, $user->password)) {
+        if (Hash::check($password, $users->password)) {
             $apiToken = base64_encode(str_random(40));
 
-            $user->update([
+            $users->update([
                 'api_token' => $apiToken
             ]);
 
@@ -56,10 +87,10 @@ class AuthController extends Controller
                 'success' => true,
                 'message' => 'Login Success!',
                 'data' => [
-                    'user' => $user,
+                    'user' => $users,
                     'api_token' => $apiToken
                 ]
-            ],201);
+            ],200);
         } else {
             return response()->json([
                 'success' => false,

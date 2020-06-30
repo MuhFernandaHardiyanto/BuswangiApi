@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Users;
 
 class UserController extends Controller
 {
@@ -18,13 +18,13 @@ class UserController extends Controller
 
     public function show ($id)
     {
-        $user = User::find($id);
+        $users = Users::find($id);
 
-        if ($user) {
+        if ($users) {
             return response()->json([
                 'success' => true,
                 'message' => 'User Found!',
-                'data' => $user
+                'data' => $users
             ], 200);
         } else{
             return response()->json([
