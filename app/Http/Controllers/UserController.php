@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Users;
 use App\Models\BiodataKernet;
 use App\Models\BiodataPenumpang;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -44,8 +45,8 @@ class UserController extends Controller
     // Menghapus Data
     public function delete_users($id)
     {
-        // $data = Users::where('id', $id)->first();
-        // $data->delete();
+        $data = Users::where('id', $id)->first();
+        $data->delete();
         // $datakernet = BiodataKernet::where('id_users', $id)->first();
         // $datakernet->delete();
 
@@ -102,5 +103,31 @@ class UserController extends Controller
         return response('Berhasil Merubah Data Kernet');
     }
 
+
+    // Menambah Data
+    public function create_location (Request $request){
+
+        $create_location = new Location();
+        $create_location->longitude = $request->input('longitude');
+        $create_location->langitude = $request->input('langitude');
+        $create_location->date_time = $request->input('date_time');	
+
+        $create_location->save();
+    
+        return response('Berhasil Tambah Data Lokasi');
+    }
+
+    // Merubah Data
+    public function update_location (Request $request, $id){
+
+        $update_location = Location::where('id', $id)->first();
+        $update_location->longitude = $request->input('longitude');
+        $update_location->langitude = $request->input('langitude');
+        $update_location->date_time = $request->input('date_time');	
+    
+        $update_location->save();
+
+        return response('Berhasil Merubah Data Lokasi');
+    }
     
 }
