@@ -18,4 +18,8 @@ $app->get('/', function () use ($app) {
 $app->post('/register_kernet', 'AuthController@register_kernet' );
 $app->post('/register_penumpang', 'AuthController@register_penumpang' );
 $app->post('/login', 'AuthController@login');
-$app->get('/users/{id}', 'UserController@show');
+$app->get('/show_users/{id}', 'UserController@show_users');
+$app->delete('/delete_users/{id}', 'UserController@delete_users');
+$app->post('/update_users/{id}', 'UserController@update_users');
+$app->post('/update_penumpang/{id}', 'UserController@update_penumpang' );
+$app->post('/update_kernet/{id}', 'UserController@update_kernet' );

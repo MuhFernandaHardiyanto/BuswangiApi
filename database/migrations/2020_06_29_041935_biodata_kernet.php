@@ -23,7 +23,8 @@ class BiodataKernet extends Migration
                 $table->string('time');
                 $table->string('validity_period_kir');
                 $table->string('validity_period_trayek');
-                $table->string('image')->nullable();
+                $table->string('image_bus')->nullable();
+                $table->string('image_kernet')->nullable();
                 $table->integer('id_users');
                 $table->timestamps();
     

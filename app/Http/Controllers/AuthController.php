@@ -13,10 +13,21 @@ class AuthController extends Controller
 {
    public function register_kernet(Request $request)
    {
+
         $name = $request->input('name');
         $email = $request->input('email');
         $password = Hash::make($request->input('password'));
         $level =$request->input('level');
+
+        //mengecek email yang sama
+        $data = Users::select('email')->where('email', $request->input('email'))->get();
+        // var_dump($data->email);exit();
+        if (count($data)>0) {
+            return response()->json([
+            'error' => 'email already exist'
+            
+        ], 400);
+        }
 
         $register_kernet = Users::create([
             'name' => $name,
@@ -46,6 +57,16 @@ class AuthController extends Controller
         $email = $request->input('email');
         $password = Hash::make($request->input('password'));
         $level =$request->input('level');
+
+        //mengecek email yang sama
+        $data = Users::select('email')->where('email', $request->input('email'))->get();
+        // var_dump($data->email);exit();
+        if (count($data)>0) {
+            return response()->json([
+            'error' => 'email already exist'
+            
+        ], 400);
+        }
 
         $register_penumpang = Users::create([
             'name' => $name,

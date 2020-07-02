@@ -21,6 +21,7 @@ class Users extends Migration
                 $table->string('password');
                 $table->string('level');
                 $table->string('api_token');
+                $table->string('email_verified_at');
                 $table->timestamps();
             });
         }

@@ -18,7 +18,7 @@ class BiodataPenumpang extends Migration
                 $table->increments('id');
                 $table->string('name');
                 $table->string('email');
-                $table->string('number_plate');
+                $table->string('number_phone');
                 $table->string('instagram');
                 $table->string('image')->nullable();
                 $table->integer('id_users');
