@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BiodataPenumpang extends Migration
+class Schedule extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class BiodataPenumpang extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('biodata_penumpang')){
-            Schema::create('biodata_penumpang', function (Blueprint $table) {
+        if (!Schema::hasTable('schedule')){
+            Schema::create('schedule', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name');
-                $table->string('number_phone');
-                $table->string('image')->nullable();
+                $table->dateTime('terminal_brwj');
+                $table->dateTime('terminal_rgj');
+                $table->dateTime('terminal_srn');
+                $table->dateTime('terminal_bcl');
+                $table->dateTime('terminal_jjg');
+                $table->dateTime('terminal_gtg');
+                $table->integer('id_kernet');
                 $table->timestamps();
     
                 // $table->foreign('id_users')->references('id')->on('users');
@@ -34,6 +38,6 @@ class BiodataPenumpang extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biodata_penumpang');
+        Schema::dropIfExists('schedule');
     }
 }

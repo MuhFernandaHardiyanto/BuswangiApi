@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BiodataPenumpang extends Migration
+class Complaint extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class BiodataPenumpang extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('biodata_penumpang')){
-            Schema::create('biodata_penumpang', function (Blueprint $table) {
+        if (!Schema::hasTable('complaint')){
+            Schema::create('complaint', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name');
-                $table->string('number_phone');
-                $table->string('image')->nullable();
+                $table->integer('id_penumpang');
+                $table->integer('id_kernet');
+                $table->string('message');
                 $table->timestamps();
     
                 // $table->foreign('id_users')->references('id')->on('users');
@@ -34,6 +34,6 @@ class BiodataPenumpang extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biodata_penumpang');
+        Schema::dropIfExists('complaint');
     }
 }

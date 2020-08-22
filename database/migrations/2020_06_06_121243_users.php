@@ -16,11 +16,12 @@ class Users extends Migration
         if (!Schema::hasTable('users')){
             Schema::create('users', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name');
                 $table->string('email')->uniqid();
                 $table->string('password');
                 $table->string('level');
                 $table->string('api_token');
+                $table->integer('id_penumpang');
+                $table->integer('id_kernet');
                 $table->string('email_verified_at');
                 $table->timestamps();
             });

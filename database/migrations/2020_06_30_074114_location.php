@@ -19,7 +19,7 @@ class Location extends Migration
                 $table->string('longitude');
                 $table->string('langitude');
                 $table->dateTime('date_time');
-                $table->integer('id_biodata_kernet');
+                $table->integer('id_kernet');
                 $table->timestamps();
     
                 // $table->foreign('id_biodata_kernet')->references('id')->on('biodata_kernet');
